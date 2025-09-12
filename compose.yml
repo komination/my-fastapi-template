@@ -1,18 +1,11 @@
 services:
   app:
     build:
-      context: .devcontainer
+      context: ./.devcontainer
       dockerfile: dockerfile.devcontainer
-      args: 
-        - USER=${USER_NAME}
-        - UID=${UID}
-    # network_mode: host
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              capabilities: [gpu]
+      args:
+        USER: ${USER_NAME}
+        UID: ${UID}
     tty: true
     env_file:
       - ./.env
@@ -21,22 +14,30 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
+
   db:
-    image: postgres:latest
+    image: postgres:17.6-bookworm
     environment:
-      POSTGRES_USER: ${DB_USER:-postgres}
-      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
-      POSTGRES_DB: ${DB_NAME:-app}
-    ports:
-      - "5432:5432"
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    # ports:
+    #   - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-postgres}"]
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-postgres} -d ${DB_NAME:-app}"]
       interval: 10s
       timeout: 5s
       retries: 5
+    restart: unless-stopped
+
 volumes:
   pgdata:
     driver: local
-  
