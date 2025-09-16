@@ -16,7 +16,8 @@
 				"DavidAnson.vscode-markdownlint",
 				"PKief.material-icon-theme",
 				"ms-toolsai.jupyter",
-				"ms-python.python"
+				"ms-python.python",
+				"cweijan.vscode-postgresql-client2"
 			]
 		}
 	},
