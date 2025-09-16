@@ -17,7 +17,8 @@
 				"PKief.material-icon-theme",
 				"ms-toolsai.jupyter",
 				"ms-python.python",
-				"cweijan.vscode-postgresql-client2"
+				"cweijan.vscode-postgresql-client2",
+				"charliermarsh.ruff"
 			]
 		}
 	},
