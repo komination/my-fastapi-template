@@ -11,6 +11,7 @@ services:
       - ./.env
     volumes:
       - ./:/app
+      - ${HOME}/.codex:/home/${USER_NAME}/.codex
     depends_on:
       db:
         condition: service_healthy
