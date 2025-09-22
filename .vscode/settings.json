@@ -1,13 +1,46 @@
 {
-    "python-envs.defaultEnvManager": "ms-python.python:system",
-    "python-envs.pythonProjects": [],
     "files.exclude": {
-        "**/__pycache__": true
+        "**/__pycache__": true,
+        "**/.pytest_cache": true,
     },
     "search.exclude": {
         "**/__pycache__": true
     },
     "files.watcherExclude": {
         "**/__pycache__/**": true
-    }
+    },
+    "material-icon-theme.files.associations": {
+        ".env.live": "tune"
+    },
+ 
+    "python.defaultInterpreterPath": "/app/.venv/bin/python",
+    "python.terminal.activateEnvironment": true,
+    "[python]": {
+        "editor.formatOnSave": true,
+        "editor.formatOnPaste": false,
+        "editor.formatOnType": false,
+        "editor.codeActionsOnSave": {
+            "source.fixAll": "explicit",
+            "source.organizeImports": "explicit"
+        },
+        "editor.formatOnSaveMode": "file",
+        "editor.defaultFormatter": "charliermarsh.ruff",
+    },
+   
+    // ruff
+    "ruff.enable": true,
+    "ruff.showSyntaxErrors": true,
+    "ruff.codeAction.disableRuleComment": { // # nopa でQuick Fixを無視するか否か。
+        "enable": true
+    },
+    "ruff.path": [
+        "/app/.venv/bin/ruff"
+    ],
+    "ruff.organizeImports": true,
+    // "python.testing.pytestArgs": [
+    //     "tests"
+    // ],
+    // "python.testing.unittestEnabled": false,
+    // "python.testing.pytestEnabled": true,
+    "python-envs.pythonProjects": [],
 }
